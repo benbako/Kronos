@@ -24,6 +24,11 @@ except ImportError:
 app = Flask(__name__)
 CORS(app)
 
+# Trade journal + profit & loss dashboard (local SQLite, no external services)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from journal import journal_bp  # noqa: E402
+app.register_blueprint(journal_bp)
+
 # Global variables to store models
 tokenizer = None
 model = None
